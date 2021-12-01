@@ -1,28 +1,35 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <!-- 国际化处理 -->
+  <el-config-provider :locale="locale">
+    <div class="app">
+      <router-view></router-view>
+    </div>
+  </el-config-provider>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue"
-import HelloWorld from "./components/HelloWorld.vue"
+import { ElConfigProvider } from "element-plus"
 
+// 引入中文
+import zhCn from "element-plus/lib/locale/lang/zh-cn"
+
+// defineComponent 用来对类型进行一些限制和推导
 export default defineComponent({
   name: "App",
-
+  setup() {
+    return {
+      locale: zhCn
+    }
+  },
   components: {
-    HelloWorld
+    ElConfigProvider
   }
 })
 </script>
 
 <style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.app {
+  height: 100%;
 }
 </style>
